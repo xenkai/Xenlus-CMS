@@ -69,15 +69,6 @@ class template_parse {
 			'#<script\s+language\s*=\s*(["\']?)php\1\s*>.*?</script\s*>#s',
 			'#<\?php(?:\r\n?|[ \n\t]).*?\?>#s');
 		$template = preg_replace($match, '', $template);
-		// Pull out all block/statement level elements and separate plain text
-		preg_match_all('#<!-- INCLUDE (\{\$?[A-Z0-9\-_]+\}|[a-zA-Z0-9\_\-\+\./]+) -->#', $template, $matches);
-		$include_blocks = $matches[1];
-		$template = preg_replace('#<!-- INCLUDE (?:\{\$?[A-Z0-9\-_]+\}|[a-zA-Z0-9\_\-\+\./]+) -->#', '<!-- INCLUDE -->', $template);
-		preg_match_all('#<!-- ([^<].*?) (.*?)? ?-->#', $template, $blocks, PREG_SET_ORDER);
-		$text_blocks = preg_split('#<!-- [^<].*? (?:.*?)? ?-->#', $template);
-		for ($i = 0, $j = sizeof($text_blocks); $i < $j; $i++) {
-			$this->complie_var_tags($text_blocks[$i]);
-		}
 		//Extract the main entry loop from the file
 		$pattern = '#.*{loop}(.*?){/loop}.*#is';
 		$entry_template = preg_replace($pattern, "$1", $template);
@@ -108,81 +99,6 @@ class template_parse {
 	 	}
 	 	// Return the formatted entries with the header and footer reattached
 	 	return $header . $markup . $footer;
-	 }
-	 /**
-	  * Complie variables
-	  * @access private
-	  */
-	 function complie_var_tags(&$text_blocks) {
-	 	// change template varrefs into PHP varrefs
-	 	$varref = array();
-	 	// This one will handle varrefs WITH namespaces
-	 	preg_match_all('#\{((?:[a-z0-9\-_]+\.)+)(\$)?([A-Z0-9\-_]+)\}#', $text_blocks, $varrefs, PREG_SET_ORDER);
-	 	foreach ($varrefs as $var_val) {
-	 		$namespace = $var_val[3];
-	 		$new = $this->generate_block_varref($namespace, $varname, true, $var_val[2]);
-	 		$text_blocks = str_replace($var_val[0], $new, $text_blocks);
-	 	}
-	 	/**
-	 	 * Handle remaining varrefs
-	 	 */
-	 	$text_blocks = preg_replace('#\{([A-Z0-9\-_]+)\}#', "<?php echo (isset(\$this->_rootref['\\1'])) ? \$this->_rootref['\\1'] : ''; ?>", $text_blocks);
-		$text_blocks = preg_replace('#\{\$([A-Z0-9\-_]+)\}#', "<?php echo (isset(\$this->_tpldata['DEFINE']['.']['\\1'])) ? \$this->_tpldata['DEFINE']['.']['\\1'] : ''; ?>", $text_blocks);
-		return;
-	 }
-	 /**
-	  * Complie INCLUDE tag
-	  * @access private
-	  */
-	 function compile_tag_include($tag_args) {
-	 	// Process dynamic includes
-	 	if ($tag_args[0] == '$') {
-	 		return "if (isset($tag_args)) { \$this->_tpl_include($tag_args); }";
-	 	}
-	 	return "\$this->_tpl_include('$tag_args')";
-	 }
-	 /**
-	  * Include a separate template
-	  * @access private
-	  */
-	 function _tpl_include($filename) {
-		include($filename);
-		return;
-	 }
-	 /**
-	  * Generates a reference to the given variable inside the given (possibly nested)
-	  * block namespace. This is a string of the form:
-	  * ' . $this->_tpldata['parent'][$_parent_i]['$child1'][$_child1_i]['$child2'][$_child2_i]...['varname'] . '
-	  * It's ready to be inserted into an "echo" line in one of the templates.
-	  * NOTE: expects a trailing "." on the namespace.
-	  * @access private
-	  */
-	 function generate_block_varref($namespace, $varname, $echo = true, $defop = false) {
-	 	// Strip the trailing period.
-	 	$namespace = substr($namespace, 0, -1);
-	 	// Get a reference to the data block for this namespace.
-	 	$varref = $this->generate_block_data_ref($namespace, true, $defop);
-	 	// Prepend the necessary code to stick this in an echo line.
-	 	
-	 	// Append the variable reference.
-	 	$varref .= "['$varname']";
-	 	$varref = ($echo) ? "<?php echo $varref; ?>" : ((isset($varref)) ? $varref : '');
-	 	return $varref;
-	 }
-	 /**
-	  *
-	  * Generates a reference to the array of data values for the given
-	  * (possibly nested) block namespace. This is a string of the form:
-	  * $this->_tpldata['parent'][$_parent_i]['$child1'][$_child1_i]['$child2'][$_child2_i]...['$childN']
-	  *If $include_last_iterator is true, then [$_childN_i] will be appended to the form shown above.
-	  * NOTE: does not expect a trailing "." on the blockname.
-	  * @access private
-	  */
-	 function generate_block_data_ref($blockname, $include_last_iterator, $defop = false) {
-	 	// Get an array of the blocks involved.
-	 	$blocks = explode('.', $blockname);
-	 	$blockcount = sizeof($blocks) - 1;
-	 	//
 	 }
 	 /**
 	  * Replaces template tags with the corresponding entry data
