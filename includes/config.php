@@ -13,13 +13,13 @@
 $dbhost = 'localhost';
 
 # Database Username
-$dbuser = 'xenlusne_web';
+$dbuser = '';
 
 # Database Password
-$dbpasswd = 'Q1w2e3p0o9i8';
+$dbpasswd = '';
 
 # Database Name
-$dbname = 'xenlusne_web';
+$dbname = '';
 
 $table_prefix = 'xenlus_';
 
