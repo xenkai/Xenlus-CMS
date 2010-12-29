@@ -1,7 +1,7 @@
 <?php
 /**
  * Xenlus
- * Copyright 2009 Xenlus Group. All Rights Reserved.
+ * Copyright 2010 Xenlus Group. All Rights Reserved.
  **/
 
 require('./includes/loader.php');
