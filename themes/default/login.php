@@ -4,16 +4,20 @@
 	<div id=content>
 		<article>
 			<form method="post" action="{LOGIN_ACTION}">
-				<h2>Login <small>enter your credentials</small></h2>
+				<h1>Please enter your credentials</h1>
+				<dt>
 				<p>
-					<label for="name">Username: </label>
-					<input type="text" name="username">
+					<dd><label for="name">Username</label></dd>
+					<dd><input type="text" name="username"></dd>
 				</p>
 				<p>
-					<label for="pwd">Password: </label>
-					<input type="password" name="pwd">
+					<dd><label for="pwd">Password</label></dd>
+					<dd><input type="password" name="pwd"></dd>
 				</p>
+				</dt>
 				<p>
+					<label for="signup">Not a Member?</lable>
+					<a href="/?p=register">Register</a> or 
 					<input type="submit" id="submit" value="Login" name="submit">
 				</p>
 			</form>
@@ -22,13 +26,3 @@
 			</footer>
 		</article>
 	</div>
-	
-	<aside>
-		<section>
-			<blockquote>Sidebar to be up soon</blockquote>
-			<a class=twitterHandle href=#>@Xenlus Administrator</a>
-		</section>
-	</aside>
-</div>
-
-{/loop}

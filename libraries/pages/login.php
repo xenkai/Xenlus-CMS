@@ -4,6 +4,9 @@
  * Copyright 2010 Xenlus Group. All Rights Reserved.
  */
 
+// No direct access to anyone.
+defined('_XEXEC') or die;
+
 $xen_user = new Xen_User();
 
 if (!empty($_POST['username']) && !empty($_POST['pwd'])) {

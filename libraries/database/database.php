@@ -5,6 +5,10 @@
  */
 // Using this as temporary because we might be creating a multi
 // database type support in the future.
+
+// No direct access to anyone.
+defined('_XEXEC') or die;
+
 class Database_Conn {
 	private $conn;
 	function __construct() {

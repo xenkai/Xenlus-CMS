@@ -17,26 +17,25 @@
 <header>
 	<hgroup>
 		<a href="{siteurl}" id="logo">{sitename}</a>
-		<div id=browser>
+		<div id=searchbar>
 			<p><form method=post action=?p=search><input type=text size=30 name=searchbox /></form></p>
 		</div>
 	</hgroup>
 	<nav id=global>
 		<ul>
-			<div id=navbar>
 				<li><a href=/?p=home>Home</a></li>
 				<li><a href=/?p=blog>Blog</a></li>
 				<li><a href=/?p=forum>Forum</a></li>
 				<li id=services>
 					<a href=/?p=services>Services</a>
 					<ul id=subMenu>
-						<li><a href=/?p=webhosting>Web hosting</a></li>
-						<li><a href=/?p=webdev>Web Development</a></li>
+						<li><a href=/?p=webhosting>Free Blog</a></li>
+						<li><a href=/?p=webdev>Develop Web</a></li>
 					</ul>
 				</li>
 				<li><a href=/?p=about>About</a></li>
-			</div>
 		</ul>
+		<p>Howdy, Guest &#124; <a href=/?p=register>Register</a> or <a href=/?p=login>Login</a>?</p>
 	</nav>
 </header>
 <div id=wrapper>

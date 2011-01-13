@@ -1,2 +1,15 @@
-Xenlus's a Web Software.
-It is very much under development now.
+Xenlus-CMS is a Content Management System aim to provide simplicity and flexibility.
+
+CHANGELOG:
+######################
+13 Jan 2011
+######################
+- Re-organise all files to it's respective location.
+- Fix template display bug on firefox. (IE not sure)
+- Add more directory(Empty current but it will be required in the future development)
+- Improve/Clean codes by implementing defines.php
+- Added support to prevent unauthorized access to the files
+- Libraries directory to store all the functions.(Massive Development section)
+- Partial database connect
+- Added Version Called for the current Version. (Able to retreive from the official server next time?)
+- Some improvements and code cleanup...

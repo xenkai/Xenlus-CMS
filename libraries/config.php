@@ -9,6 +9,9 @@
  * correct.
  **/
 
+// No direct access to anyone.
+defined('_XEXEC') or die;
+
 # Where is your server host at? 90% of the time it will be "localhost".
 $dbhost = 'localhost';
 
@@ -21,6 +24,6 @@ $dbpasswd = '';
 # Database Name
 $dbname = '';
 
-$table_prefix = 'xenlus_';
+$table_prefix = '';
 
 ?>

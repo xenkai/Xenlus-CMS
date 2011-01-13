@@ -4,6 +4,9 @@
  * Copyright 2010 Xenlus Group. All Rights Reserved.
  */
 
+// No direct access to anyone.
+defined('_XEXEC') or die;
+
 class Xen_User {
 	function check_user($un, $pwd) {
 		$dbc = new Database_Conn();

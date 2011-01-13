@@ -4,6 +4,9 @@
  * Copyright 2010 Xenlus Group. All Rights Reserved.
  **/
 
+// No direct access to anyone.
+defined('_XEXEC') or die;
+
 function mres($input) {
 	$input = mysql_real_escape_string($input);
 

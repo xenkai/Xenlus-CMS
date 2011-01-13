@@ -3,6 +3,10 @@
  * Xenlus
  * Copyright 2010 Xenlus Group. All Rights Reserved.
  */
+ 
+// No direct access to anyone.
+defined('_XEXEC') or die;
+
 /**
  * Template Class - Functions for compling templates.
  */
@@ -45,6 +49,7 @@ class template_parse {
 		if (file_exists($template_file) && is_readable($template_file)) {
 			$path = file_get_contents("$template_path/header.php");
 			$path .= file_get_contents($template_file);
+			$path .= file_get_contents("$template_path/sidebar.php");
 			$path .= file_get_contents("$template_path/footer.php");
 		// Look for a system template
 		} else if (file_exists($default_file=$template_path . 'default.inc') && is_readable($default_file)) {
