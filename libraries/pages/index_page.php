@@ -15,7 +15,7 @@ $template->template_file = 'index_page.php';
 
 $template->entries[] = '';
 
-$extra = (object) array('header' => (object) array('siteurl' => '/', 'themepath' => $template_path, 'sitename' => 'Xenlus', 'sitepage' => 'Index Page'), 'footer' => (object) array('themepath' => $template_path));
+$extra = (object) array('header' => (object) array('SITEURL' => './', 'THEMEPATH' => $template_path, 'SITENAME' => 'Xenlus', 'SITEPAGE' => 'Index Page'), 'footer' => (object) array('THEMEPATH' => $template_path));
 
 // Output the template markup
 echo $template->generate_markup($extra);

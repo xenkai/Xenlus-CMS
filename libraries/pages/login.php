@@ -26,9 +26,9 @@ $template = new template_parse;
 // Set the testing template file location
 $template->template_file = 'login.php';
 
-$template->entries[] = (object) array('LOGIN_ACTION' => '?p=login', 'MESSAGE' => putmessage());
+$template->entries[] = (object) array('MESSAGE' => putmessage());
 
-$extra = (object) array('header' => (object) array('siteurl' => '/', 'sitename' => "Xenlus", 'themepath' => $template_path, 'sitepage' => 'Login'));
+$extra = (object) array('header' => (object) array('SITEURL' => './', 'SITENAME' => "Xenlus", 'THEMEPATH' => $template_path, 'SITEPAGE' => 'Login'));
 
 // Output the template markup
 echo $template->generate_markup($extra);

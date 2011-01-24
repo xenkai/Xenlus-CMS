@@ -19,6 +19,18 @@ function clean($clear) {
 	return $cleared;
 }
 
+function executeSelectQuery($query) {
+    $result = mysqli_query($GLOBALS['link'], $query) or die(mysqli_error($GLOBALS['link']));
+    while($row=mysqli_fetch_array($result)) {
+        $returnArray[] = $row;
+    }
+    return $returnArray;
+}
+
+function executeInsertQuery($query) {
+    return mysqli_query($GLOBALS['link'], $query) or die(mysqli_error($GLOBALS['link']));
+}
+
 function PageURL() {
 	$pageURL = 'http';
 	if ($_SERVER["HTTPS"] == "on") {

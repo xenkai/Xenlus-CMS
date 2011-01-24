@@ -3,11 +3,11 @@
 <head>
 	<meta charset=UTF-8> 
 
-	<title>{sitename} &bull; {sitepage}</title>
+	<title>{SITENAME} &bull; {SITEPAGE}</title>
 	
 	<!--[if lt IE 9]><script src=http://html5shiv.googlecode.com/svn/trunk/html5.js></script><![endif]-->
 	
-	<link rel="stylesheet" href="{themepath}style.css" />
+	<link rel="stylesheet" href="{THEMEPATH}style.css" />
 	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
 
@@ -16,7 +16,7 @@
 
 <header>
 	<hgroup>
-		<a href="{siteurl}" id="logo">{sitename}</a>
+		<a href="{SITEURL}" id="logo">{SITENAME}</a>
 		<div id=searchbar>
 			<p><form method=post action=?p=search><input type=text size=30 name=searchbox /></form></p>
 		</div>
